@@ -1,13 +1,31 @@
+.Desktopcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.Tabletcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   height: 100vh;
-  width: 100vw;
+  max-width: 450px;
   padding: 20px 20px;
   position: relative;
-  overflow-y: scroll;
 }
 
 .background {
@@ -52,14 +70,7 @@
   font-size: 14px;
   line-height: 21px;
   text-align: center;
-  color: #cdcdcd;
-}
-
-.button1 {
-  background: #f1304d;
-  box-shadow: 5px -1px 49px 2px rgba(241, 48, 77, 0.2);
-  border-radius: 3px;
-  padding: 10px 40px;
+  color: #929292;
 }
 
 .buttonText {
@@ -69,13 +80,21 @@
   color: #ffffff;
 }
 
+.button1,
 .button2 {
-  background: #252525;
+  flex: 1;
+  background: #f1304d;
   box-shadow: 5px -1px 49px 2px rgba(241, 48, 77, 0.2);
   border-radius: 3px;
-  padding: 10px 40px;
+  padding: 10px;
+}
+.buttonContainer .button1 {
+  margin-right: 20px; /* Add margin-right to create space */
 }
 
+.buttonContainer .button2 {
+  background: #1b1b1b;
+}
 .buttonContainer {
   display: flex;
   justify-content: space-between;
