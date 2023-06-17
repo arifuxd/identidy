@@ -1,0 +1,156 @@
+{
+  "users": [
+    {
+      "username": "arifuxd",
+      "name": "Ariful Islam",
+      "title": "A passionate UI/UX designer",
+      "bio": "Hi, I'm Ariful Islam. I can create magic through designs. I can express my thoughts visually and I also love colors, I love playing with them. I would like to building something that didn't exist before.",
+      "phone": "+8801990004984",
+      "email": "arifofficial00@gmail.com",
+      "avatar": "/avatar.jpg",
+      "links": [
+        {
+          "id": 1,
+          "icon": "/phone.svg",
+          "text": "+88 01990004984",
+          "to": "tel:+8801990004984"
+        },
+        {
+          "id": 2,
+          "icon": "/email.svg",
+          "text": "arifofficial00@gmail.com",
+          "to": "mailto:arifofficial00@gmail.com"
+        },
+        {
+          "id": 3,
+          "icon": "/link.svg",
+          "text": "Static Design",
+          "to": "https://drive.google.com/drive/folders/1UONZqHS7ss9xU_VT1FmwzwES2OqWZ090?usp=drive_link"
+        },
+        {
+          "id": 4,
+          "icon": "/link.svg",
+          "text": "Motion Graphics",
+          "to": "https://drive.google.com/drive/folders/12EFeb5t0K01ivycTDRpdIMKNXm6tS2BC?usp=drive_link"
+        },
+        {
+          "id": 5,
+          "icon": "/behance.svg",
+          "text": "behance.net/arifuxd",
+          "to": "https://behance.net/arifuxd"
+        },
+        {
+          "id": 6,
+          "icon": "/dribbble.svg",
+          "text": "dribbble.com/arifuxd",
+          "to": "https://dribbble.com/arifuxd"
+        },
+        {
+          "id": 7,
+          "icon": "/location.svg",
+          "text": "North Jatrabari, Dhaka-1204",
+          "to": "#"
+        }
+      ],
+      "sociallinks": [
+        {
+          "id": 1,
+          "icon": "/facebook.svg",
+          "text": "Facebook",
+          "to": "https://www.facebook.com/arifuxd"
+        },
+        {
+          "id": 2,
+          "icon": "/instagram.svg",
+          "text": "Instagram",
+          "to": "https://www.instagram.com/arifuxd"
+        },
+        {
+          "id": 3,
+          "icon": "/linkedin.svg",
+          "text": "Linkedin",
+          "to": "https://www.linkedin.com/in/arifuxd"
+        },
+        {
+          "id": 4,
+          "icon": "/twitter.svg",
+          "text": "Twitter",
+          "to": "https://www.twitter.com/arifuxd"
+        },
+        {
+          "id": 5,
+          "icon": "/whatsapp.svg",
+          "text": "Whatsapp",
+          "to": "https://www.twitter.com/arifuxd"
+        }
+      ]
+    },
+    {
+      "username": "yeasin",
+      "name": "Yeasin Arafat Shuvo",
+      "title": "Software Engineer",
+      "bio": "Hi, I'm Yeasin Arafat Shuvo. I am a software engineer. I love to code and solve problems. I am a fast learner and I love to learn new things. I am a team player and I love to work with a team. I am a self-motivated person and I love to motivate others.",
+      "phone": "+8801779930077",
+      "email": "yeasinarafatshuvo420@gmail.com",
+      "avatar": "/avatar2.jpg",
+      "links": [
+        {
+          "id": 1,
+          "icon": "/phone.svg",
+          "text": "+88 01779930077",
+          "to": "tel:+8801779930077"
+        },
+        {
+          "id": 2,
+          "icon": "/email.svg",
+          "text": "yeasinarafatshuvo420@gmail.com",
+          "to": "mailto:yeasinarafatshuvo420@gmail.com"
+        },
+        {
+          "id": 3,
+          "icon": "/link.svg",
+          "text": "Web Design Portfolio",
+          "to": "https://drive.google.com/drive/folders/1UONZqHS7ss9xU_VT1FmwzwES2OqWZ090?usp=drive_link"
+        },
+        {
+          "id": 7,
+          "icon": "/location.svg",
+          "text": "Senbag, Noakhali, Bangladesh",
+          "to": "#"
+        }
+      ],
+      "sociallinks": [
+        {
+          "id": 1,
+          "icon": "/facebook.svg",
+          "text": "Facebook",
+          "to": "https://www.facebook.com/arifuxd"
+        },
+        {
+          "id": 2,
+          "icon": "/instagram.svg",
+          "text": "Instagram",
+          "to": "https://www.instagram.com/arifuxd"
+        },
+        {
+          "id": 3,
+          "icon": "/linkedin.svg",
+          "text": "Linkedin",
+          "to": "https://www.linkedin.com/in/arifuxd"
+        },
+        {
+          "id": 4,
+          "icon": "/twitter.svg",
+          "text": "Twitter",
+          "to": "https://www.twitter.com/arifuxd"
+        },
+        {
+          "id": 5,
+          "icon": "/whatsapp.svg",
+          "text": "Whatsapp",
+          "to": "https://www.twitter.com/arifuxd"
+        }
+      ]
+    }
+  ]
+}
