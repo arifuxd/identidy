@@ -10,7 +10,10 @@ import RoundIcon from "@/components/RoundIcon/RoundIcon";
 
 const ProfileComponent = ({ data, isMobile }) => {
   return (
-    <div className={`${style.container}`} style={!isMobile && { width: 450 }}>
+    <div
+      className={`${style.container}`}
+      style={!isMobile ? { width: 450 } : null}
+    >
       <div className={style.background}></div>
       <Image src="/logo.png" className={style.logo} width={130} height={100} />
       <Image
@@ -94,15 +97,15 @@ const Profile = () => {
   return (
     <div>
       {isMobile && data[0]?.username ? (
-        <ProfileComponent data={data} />
+        <ProfileComponent isMobile={isMobile} data={data} />
       ) : isDesktop && data[0]?.username ? (
         <div className={`${style.Desktopcontainer}`}>
-          <ProfileComponent data={data} />
+          <ProfileComponent isMobile={isMobile} data={data} />
         </div>
       ) : isTablet && data[0]?.username ? (
         // Add your logic for tablet here
         <div className={`${style.Tabletcontainer}`}>
-          <ProfileComponent data={data} />
+          <ProfileComponent isMobile={isMobile} data={data} />
         </div>
       ) : (
         <div>
