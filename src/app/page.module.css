@@ -28,6 +28,10 @@
   position: relative;
 }
 
+.notMobile {
+  width: 450px !important;
+}
+
 .background {
   position: fixed;
   top: 0;

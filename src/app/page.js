@@ -8,9 +8,9 @@ import { DeviceContext } from "@/utils/deviceContext";
 import Link from "next/link";
 import RoundIcon from "@/components/RoundIcon/RoundIcon";
 
-const ProfileComponent = ({ data }) => {
+const ProfileComponent = ({ data, isMobile }) => {
   return (
-    <div className={`${style.container}`}>
+    <div className={`${style.container}`} style={!isMobile && { width: 450 }}>
       <div className={style.background}></div>
       <Image src="/logo.png" className={style.logo} width={130} height={100} />
       <Image
@@ -53,9 +53,9 @@ const ProfileComponent = ({ data }) => {
 };
 
 const Profile = () => {
+  const { isMobile, isTablet, isDesktop } = useContext(DeviceContext);
   const [data, setData] = useState(null);
   const [subdomain, setSubdomain] = useState("");
-  const { isMobile, isTablet, isDesktop } = useContext(DeviceContext);
 
   useEffect(() => {
     const subdomain = window.location.hostname.split(".")[0];
