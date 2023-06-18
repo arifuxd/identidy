@@ -54,7 +54,7 @@ const ProfileComponent = ({ data, isMobile }) => {
   );
 };
 
-const Profile = () => {
+const Home = () => {
   const { isMobile, isTablet, isDesktop } = useContext(DeviceContext);
   const [data, setData] = useState(null);
   const [subdomain, setSubdomain] = useState("");
@@ -116,4 +116,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Home;
