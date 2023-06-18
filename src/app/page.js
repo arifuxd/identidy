@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
-import Button from "@/components/Button/Button";
 import style from "./page.module.css";
 import IconButton from "@/components/IconButton/IconButton";
 import { DeviceContext } from "@/utils/deviceContext";
