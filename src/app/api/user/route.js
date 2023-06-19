@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/utils/MongoConnect";
 import User from "@/models/user";
-import formidable from "formidable";
 import fs from "fs";
 import path from "path";
 
