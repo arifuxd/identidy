@@ -29,5 +29,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+// Check if the model has already been compiled
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 export default User;

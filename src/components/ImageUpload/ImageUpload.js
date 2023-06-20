@@ -1,30 +1,11 @@
 "use client";
-import { initializeApp } from "firebase/app";
+import { useState, useEffect } from "react";
 import {
-  getStorage,
+  storage,
   ref,
-  uploadBytes,
   getDownloadURL,
   uploadBytesResumable,
-} from "firebase/storage";
-import { useState } from "react";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDeVoYzoST-SgA0BiWaxYMkHCPpuUYGKu8",
-  authDomain: "identidy-nfc.firebaseapp.com",
-  projectId: "identidy-nfc",
-  storageBucket: "identidy-nfc.appspot.com",
-  messagingSenderId: "403470328257",
-  appId: "1:403470328257:web:ea0addd969555e67114f40",
-  measurementId: "G-FJPVE95MDH",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// Initialize Cloud Storage and get a reference to the service
-const storage = getStorage(app);
-
-const storageRef = ref(storage);
+} from "@/utils/firebaseConfig";
 
 function ImageUploadForm() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -38,7 +19,9 @@ function ImageUploadForm() {
     bio: "",
     phone: "",
     email: "",
+    avatar: "",
   });
+  const [combinedData, setcombinedData] = useState({});
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -58,10 +41,8 @@ function ImageUploadForm() {
 
     try {
       // Upload the image to Firebase Storage
-
-      // const storageRef = storage.storage.ref();
-      const imageRef = ref(storage, `uploads/${selectedImage.name}`);
-
+      const imageName = `${new Date().getTime()}-${selectedImage.name}`;
+      const imageRef = ref(storage, `uploads/${imageName}`);
       const uploadTask = uploadBytesResumable(imageRef, selectedImage);
 
       uploadTask.on(
@@ -81,47 +62,61 @@ function ImageUploadForm() {
           getDownloadURL(ref(storage, uploadTask.snapshot.ref.fullPath)).then(
             (downloadURL) => {
               setImgUrl(downloadURL);
+              console.log(downloadURL);
+
+              // Update the combinedData object with the imgUrl
+              setcombinedData({
+                ...formData,
+                avatar: downloadURL,
+              });
+
+              // Send the POST request
+              postData();
             }
           );
         }
       );
-      console.log(imgUrl);
-
-      const combinedData = {
-        ...formData,
-        avatar: imageRef.fullPath,
-      };
-
-      console.log(combinedData);
     } catch (error) {
-      // Perform the API request to send the combined data to the backend
-      // const response = await fetch("/api/your-post-api-endpoint", {
-      //   method: "POST",
-      //   body: JSON.stringify(combinedData),
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-
-      // if (response.ok) {
-      //   // Reset the form and selected image state
-      //   setFormData({
-      //     username: "",
-      //     name: "",
-      //     title: "",
-      //     bio: "",
-      //     phone: "",
-      //     email: "",
-      //   });
-      //   setSelectedImage(null);
-      // }
-      //  else {
-      //   // Handle the error response
-      //   console.error("Error uploading data:", response.statusText);
-      // }
       console.error("Error uploading image:", error);
     }
   };
+
+  async function postData() {
+    try {
+      const response = await fetch("/api/user", {
+        method: "POST",
+        body: JSON.stringify(combinedData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+      if (response.ok) {
+        // Reset the form and selected image state
+        setFormData({
+          username: "",
+          name: "",
+          title: "",
+          bio: "",
+          phone: "",
+          email: "",
+        });
+        setSelectedImage(null);
+      } else {
+        // Handle the error response
+        console.error("Error uploading data:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error uploading data:", error);
+    }
+  }
+
+  useEffect(() => {
+    console.log("imgUrl", imgUrl);
+    if (imgUrl) {
+      postData();
+    }
+  }, [imgUrl]);
 
   return (
     <form onSubmit={handleSubmit}>
