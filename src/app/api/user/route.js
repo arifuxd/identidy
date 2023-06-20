@@ -1,26 +1,25 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/utils/MongoConnect";
 import User from "@/models/user";
-import formidable from "formidable";
 import fs from "fs";
 import path from "path";
 
-const saveBase64Image = async (base64Data) => {
-  const base64Image = base64Data.split(";base64,").pop();
-  const extension = base64Data.split(";")[0].split("/")[1];
+// const saveBase64Image = async (base64Data) => {
+//   const base64Image = base64Data.split(";base64,").pop();
+//   const extension = base64Data.split(";")[0].split("/")[1];
 
-  // Generate a unique filename for the image
-  const filename = `${Date.now()}.${extension}`;
-  const imagePath = path.join(process.cwd(), "public", "uploads", filename);
+//   // Generate a unique filename for the image
+//   const filename = `${Date.now()}.${extension}`;
+//   const imagePath = path.join(process.cwd(), "public", "uploads", filename);
 
-  try {
-    await fs.promises.mkdir(path.dirname(imagePath), { recursive: true });
-    await fs.promises.writeFile(imagePath, base64Image, "base64");
-    return filename; // or return imagePath;
-  } catch (error) {
-    throw new Error(`Error saving image: ${error}`);
-  }
-};
+//   try {
+//     await fs.promises.mkdir(path.dirname(imagePath), { recursive: true });
+//     await fs.promises.writeFile(imagePath, base64Image, "base64");
+//     return filename; // or return imagePath;
+//   } catch (error) {
+//     throw new Error(`Error saving image: ${error}`);
+//   }
+// };
 
 export const GET = async () => {
   try {
@@ -63,7 +62,8 @@ export const POST = async (req) => {
 
     // Process the image and convert it to base64 encoding
     // const base64Image = await processImage(data.avatar);
-    var imagename = await saveBase64Image(data.avatar);
+    // var imagename = await saveBase64Image(data.avatar);
+    var imagename = await saveFileToFirebaseStorage(data.avatar);
     // Create a new user document
     const newUser = new User({
       ...data,
@@ -81,17 +81,17 @@ export const POST = async (req) => {
 };
 
 // Example function to process the image and convert it to base64 encoding
-async function processImage(imageData) {
-  // Your image processing logic here
-  // For example, you can use a library like `sharp` to resize or modify the image
-  // Once you have the processed image, you can convert it to base64 encoding
+// async function processImage(imageData) {
+//   // Your image processing logic here
+//   // For example, you can use a library like `sharp` to resize or modify the image
+//   // Once you have the processed image, you can convert it to base64 encoding
 
-  // Example code to convert an image file to base64 encoding
-  const imageBuffer = Buffer.from(imageData, "base64");
-  const base64Image = imageBuffer.toString("base64");
+//   // Example code to convert an image file to base64 encoding
+//   const imageBuffer = Buffer.from(imageData, "base64");
+//   const base64Image = imageBuffer.toString("base64");
 
-  return base64Image;
-}
+//   return base64Image;
+// }
 
 export const DELETE = async (req) => {
   try {
