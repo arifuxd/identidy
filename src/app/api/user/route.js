@@ -40,9 +40,9 @@ export const DELETE = async (req) => {
   try {
     await dbConnect();
     const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
-    // Find the user document by ID and delete it
-    const deletedUser = await User.findByIdAndDelete(id);
+    const username = searchParams.get("username");
+    // Find the user document by username and delete it
+    const deletedUser = await User.findOneAndDelete({ username: username });
 
     if (!deletedUser) {
       return new NextResponse("User not found", { status: 404 });
@@ -65,13 +65,17 @@ export const PUT = async (req) => {
   try {
     await dbConnect();
     const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
+    const username = searchParams.get("username");
     const data = await req.json();
 
-    // Find the user document by ID and update it
-    const updatedUser = await User.findByIdAndUpdate(id, data, {
-      new: true,
-    });
+    // Find the user document by username and update it
+    const updatedUser = await User.findOneAndUpdate(
+      { username: username },
+      data,
+      {
+        new: true,
+      }
+    );
 
     if (!updatedUser) {
       return new NextResponse({ message: "User not found" }, { status: 404 });

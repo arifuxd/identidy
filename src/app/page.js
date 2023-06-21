@@ -16,13 +16,13 @@ const ProfileComponent = ({ data, isMobile }) => {
       <div className={style.background}></div>
       <Image src="/logo.png" className={style.logo} width={130} height={100} />
       <Image
-        src={data[0]?.avatar}
+        src={data?.avatar}
         className={style.avatar}
         width={140}
         height={140}
       />
-      <h1 className={style.name}>{data[0]?.name}</h1>
-      <h2 className={style.title}>{data[0]?.title}</h2>
+      <h1 className={style.name}>{data?.name}</h1>
+      <h2 className={style.title}>{data?.title}</h2>
 
       <div className={style.buttonContainer}>
         <div className={style.button1}>
@@ -35,13 +35,13 @@ const ProfileComponent = ({ data, isMobile }) => {
         </div>
       </div>
       <div className={style.socialLinks}>
-        {data[0]?.sociallinks.map((link) => (
+        {data?.sociallinks.map((link) => (
           <RoundIcon key={link.id} icon={link.icon} to={link.to} />
         ))}
       </div>
       <p className={style.bio}>{data?.bio}</p>
       <div className={style.links}>
-        {data[0]?.links.map((link) => (
+        {data?.links.map((link) => (
           <IconButton
             key={link.id}
             icon={link.icon}
@@ -64,12 +64,9 @@ const Home = () => {
     setSubdomain(subdomain);
 
     async function getData() {
-      const res = await fetch(
-        `https://my-json-server.typicode.com/arifuxd/fake-data/users?username=${subdomain}`,
-        {
-          cache: "no-cache",
-        }
-      );
+      const res = await fetch(`api/user/${subdomain}`, {
+        cache: "no-cache",
+      });
 
       if (!res.ok) {
         throw new Error("Failed to fetch data");
@@ -81,7 +78,6 @@ const Home = () => {
     getData();
   }, [subdomain]);
 
-  console.log(data);
   console.log("subdomain: ", subdomain);
 
   if (!data) {
@@ -95,13 +91,13 @@ const Home = () => {
 
   return (
     <div>
-      {isMobile && data[0]?.username ? (
+      {isMobile && data?.username ? (
         <ProfileComponent isMobile={isMobile} data={data} />
-      ) : isDesktop && data[0]?.username ? (
+      ) : isDesktop && data?.username ? (
         <div className={`${style.Desktopcontainer}`}>
           <ProfileComponent isMobile={isMobile} data={data} />
         </div>
-      ) : isTablet && data[0]?.username ? (
+      ) : isTablet && data?.username ? (
         // Add your logic for tablet here
         <div className={`${style.Tabletcontainer}`}>
           <ProfileComponent isMobile={isMobile} data={data} />
