@@ -1,5 +1,3 @@
-// "use client";
-
 import ImageUploadForm from "@/components/ImageUpload/ImageUpload";
 
 function UploadPage() {

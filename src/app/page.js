@@ -91,13 +91,13 @@ const Home = () => {
 
   return (
     <div>
-      {isMobile && data?.username ? (
+      {isMobile && data ? (
         <ProfileComponent isMobile={isMobile} data={data} />
-      ) : isDesktop && data?.username ? (
+      ) : isDesktop && data ? (
         <div className={`${style.Desktopcontainer}`}>
           <ProfileComponent isMobile={isMobile} data={data} />
         </div>
-      ) : isTablet && data?.username ? (
+      ) : isTablet && data ? (
         // Add your logic for tablet here
         <div className={`${style.Tabletcontainer}`}>
           <ProfileComponent isMobile={isMobile} data={data} />
