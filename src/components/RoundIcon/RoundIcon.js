@@ -6,10 +6,15 @@ const RoundIcon = ({ icon, to }) => {
   return (
     <Link
       className={style.container}
-      href={to}
+      href={to !== undefined ? to : "#"}
       target={to == "#" ? "_self" : "_blank"}
     >
-      <Image className={style.icon} src={icon} width={33} height={33} />
+      <Image
+        className={style.icon}
+        src={`${icon}.svg`}
+        width={33}
+        height={33}
+      />
     </Link>
   );
 };

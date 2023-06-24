@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const linkSchema = new mongoose.Schema({
   icon: String,
-  text: String,
-  to: String,
+  title: String,
+  url: String,
 });
 
 const socialLinkSchema = new mongoose.Schema({
   icon: String,
-  text: String,
+  title: String,
   to: String,
 });
 

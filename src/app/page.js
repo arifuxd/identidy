@@ -35,9 +35,11 @@ const ProfileComponent = ({ data, isMobile }) => {
         </div>
       </div>
       <div className={style.socialLinks}>
-        {data?.sociallinks.map((link) => (
-          <RoundIcon key={link.id} icon={link.icon} to={link.to} />
-        ))}
+        {data?.sociallinks.map((link) =>
+          link.to ? (
+            <RoundIcon key={link._id} icon={link.icon} to={link.to} />
+          ) : null
+        )}
       </div>
       <p className={style.bio}>{data?.bio}</p>
       <div className={style.links}>
