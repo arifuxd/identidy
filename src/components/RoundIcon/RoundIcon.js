@@ -2,12 +2,12 @@ import React from "react";
 import style from "./RoundIcon.module.css";
 import Image from "next/image";
 import Link from "next/link";
-const RoundIcon = ({ icon, to }) => {
+const RoundIcon = ({ icon, url }) => {
   return (
     <Link
       className={style.container}
-      href={to !== undefined ? to : "#"}
-      target={to == "#" ? "_self" : "_blank"}
+      href={url !== undefined ? url : "#"}
+      target={url == "#" ? "_self" : "_blank"}
     >
       <Image
         className={style.icon}

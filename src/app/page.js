@@ -36,20 +36,15 @@ const ProfileComponent = ({ data, isMobile }) => {
       </div>
       <div className={style.socialLinks}>
         {data?.sociallinks.map((link) =>
-          link.to ? (
-            <RoundIcon key={link._id} icon={link.icon} to={link.to} />
+          link.url ? (
+            <RoundIcon key={link._id} icon={link.icon} url={link.url} />
           ) : null
         )}
       </div>
       <p className={style.bio}>{data?.bio}</p>
       <div className={style.links}>
         {data?.links.map((link) => (
-          <IconButton
-            key={link.id}
-            icon={link.icon}
-            text={link.text}
-            to={link.to}
-          />
+          <IconButton key={link._id} title={link.title} url={link.url} />
         ))}
       </div>
     </div>

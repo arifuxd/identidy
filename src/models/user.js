@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const linkSchema = new mongoose.Schema({
-  icon: String,
   title: String,
   url: String,
 });
@@ -9,7 +8,7 @@ const linkSchema = new mongoose.Schema({
 const socialLinkSchema = new mongoose.Schema({
   icon: String,
   title: String,
-  to: String,
+  url: String,
 });
 
 const userSchema = new mongoose.Schema(

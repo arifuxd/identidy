@@ -13,6 +13,42 @@ function ImageUploadForm() {
   const [progresspercent, setProgresspercent] = useState(0);
   const [imgUrl, setImgUrl] = useState(null);
 
+  //dynamics link code
+  const [links, setLinks] = useState([{ id: 1, url: "", title: "Portfolio" }]);
+
+  console.log(links);
+  const addLink = () => {
+    const newId = links.length + 1;
+    const newLink = { id: newId, url: "", title: "Portfolio" };
+    setLinks([...links, newLink]);
+  };
+
+  const removeLink = (id) => {
+    const updatedLinks = links.filter((link) => link.id !== id);
+    setLinks(updatedLinks);
+  };
+
+  const handleUrlChange = (id, event) => {
+    const updatedLinks = links.map((link) => {
+      if (link.id === id) {
+        return { ...link, url: event.target.value };
+      }
+      return link;
+    });
+    setLinks(updatedLinks);
+  };
+
+  const handleOptionChange = (id, event) => {
+    const updatedLinks = links.map((link) => {
+      if (link.id === id) {
+        return { ...link, title: event.target.value };
+      }
+      return link;
+    });
+    setLinks(updatedLinks);
+  };
+  //dynamic links code
+
   const [formData, setFormData] = useState({
     username: "",
     name: "",
@@ -21,19 +57,15 @@ function ImageUploadForm() {
     phone: "",
     email: "",
     avatar: "",
-    // links: [],
+    links: [],
     sociallinks: [],
   });
-  const [additionalFields, setAdditionalFields] = useState([]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
   };
 
-  const handleAdd = () => {
-    setAdditionalFields([...additionalFields, additionalFields.length + 1]);
-  };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -73,29 +105,30 @@ function ImageUploadForm() {
             {
               icon: "facebook",
               title: "Facebook",
-              to: formData.facebook,
+              url: formData.facebook,
             },
             {
               icon: "instagram",
               title: "Instagram",
-              to: formData.instagram,
+              url: formData.instagram,
             },
             {
               icon: "linkedin",
               title: "Linkedin",
-              to: formData.linkedin,
+              url: formData.linkedin,
             },
             {
               icon: "twitter",
               title: "Twitter",
-              to: formData.twitter,
+              url: formData.twitter,
             },
             {
               icon: "youtube",
               title: "Youtube",
-              to: formData.youtube,
+              url: formData.youtube,
             },
           ],
+          links: links,
         };
 
         // Post the combined data to the server
@@ -377,75 +410,120 @@ function ImageUploadForm() {
               />
             </div>
           </div>
-          {/* <button
+          <button
             type="button"
-            onClick={handleAdd}
-            class="sm:col-span-2 w-full ring-1 ring-rose-600  transition-all  hover:bg-rose-600 text-slate-50 font-semibold py-2 px-4 rounded flex items-center justify-center sm:text-sm sm:leading-6"
+            className="sm:col-span-2 w-full ring-1 ring-rose-600  transition-all  hover:bg-rose-600 text-slate-50 font-semibold py-2 px-4 rounded flex items-center justify-center sm:text-sm sm:leading-6"
+            onClick={addLink}
           >
             <span>Add link</span>
-          </button> */}
-          {/* <div className="sm:col-span-2">
-            {additionalFields.map((i) => (
-              <div className="mt-4">
+          </button>
+          <div
+            className="sm:col-span-2
+          "
+          >
+            {links.map((link) => (
+              <div key={link.id} className="dynamicField mt-4">
                 <label
-                  htmlFor={`link${i}`}
+                  htmlFor={`link-${link.id}`}
                   className="block text-sm font-semibold leading-6 text-slate-50"
                 >
                   Link
                 </label>
                 <div className="relative mt-2.5">
                   <div className="absolute inset-y-0 left-0 flex items-center">
-                    <label htmlFor={`link${i}`} className="sr-only">
-                      link
+                    <label htmlFor={`link-${link.id}`} className="sr-only">
+                      Link
                     </label>
                     <select
-                      id={`link${i}`}
-                      name={`link${i}`}
+                      id={`link-${link.id}-title`}
+                      name={`link-${link.id}`}
                       className="h-full rounded-md border-0 bg-transparent py-0 pl-4 pr-9 text-slate-50 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm"
+                      value={link.title}
+                      onChange={(e) => handleOptionChange(link.id, e)}
                     >
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Behance"
+                      >
                         Behance
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Dribbble"
+                      >
                         Dribbble
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Github"
+                      >
                         Github
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Gitlab"
+                      >
                         Gitlab
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Pinterest"
+                      >
                         Pinterest
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Drive"
+                      >
                         Drive
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Tiktok"
+                      >
                         Tiktok
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Vimeo"
+                      >
                         Vimeo
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Portfolio"
+                      >
                         Portfolio
                       </option>
-                      <option className="bg-zinc-950 text-slate-50">
+                      <option
+                        className="bg-zinc-950 text-slate-50"
+                        value="Other"
+                      >
                         Other
                       </option>
                     </select>
                   </div>
-                  <input
-                    type="text"
-                    name="link"
-                    id="link"
-                    autoComplete="off"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 pl-36 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
-                  />
+                  <div className="flex">
+                    <input
+                      type="text"
+                      name={`link-${link.id}`}
+                      id={`link-${link.id}`}
+                      autoComplete="off"
+                      className="block w-full rounded-md border-0 px-3.5 py-2 pl-36 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      value={link.url}
+                      onChange={(e) => handleUrlChange(link.id, e)}
+                    />
+                    <button
+                      className="text-red-500 font-semibold hover:text-red-600 transition-all pl-2 text-xl"
+                      onClick={() => removeLink(link.id)}
+                    >
+                      x
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
-          </div> */}
+          </div>
           <div className="sm:col-span-2">
             <label
               htmlFor="avatar"
