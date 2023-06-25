@@ -143,7 +143,7 @@ function ImageUploadForm() {
               "Content-Type": "application/json",
             },
           });
-          console.log(response);
+
           if (response.ok) {
             // Reset the form and selected image state
             setFormData({
@@ -158,9 +158,9 @@ function ImageUploadForm() {
               sociallinks: [],
             });
             setSelectedImage(null);
-            //redireact to subdomain profile
 
-            window.location.href = `https://${formData.username}.${window.location.hostname}`;
+            // Redirect to subdomain profile
+            window.location.href = `/${formData.username}`;
           } else {
             // Handle the error response
             console.error("Error uploading data:", response.statusText);
@@ -203,12 +203,12 @@ function ImageUploadForm() {
                 type="text"
                 id="username"
                 name="username"
-                placeholder="enter your username"
+                placeholder="e.g. johnsmith"
                 value={formData.username}
                 required
                 onChange={handleInputChange}
                 autoComplete="username"
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
               />
             </div>
           </div>
@@ -225,11 +225,12 @@ function ImageUploadForm() {
                 type="text"
                 id="name"
                 name="name"
+                placeholder="e.g. John Smith"
                 value={formData.name}
                 onChange={handleInputChange}
                 required
                 autoComplete="given-name"
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -247,9 +248,10 @@ function ImageUploadForm() {
                 id="title"
                 name="title"
                 value={formData.title}
+                placeholder="e.g. A passionate creative frontend developer"
                 required
                 onChange={handleInputChange}
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -265,9 +267,10 @@ function ImageUploadForm() {
                 id="bio"
                 name="bio"
                 value={formData.bio}
+                placeholder="e.g. I am a seasoned and proactive professional who thrives on leveraging technology to drive innovation........"
                 onChange={handleInputChange}
                 rows={3}
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -285,10 +288,11 @@ function ImageUploadForm() {
                 id="phone"
                 name="phone"
                 value={formData.phone}
+                placeholder="e.g. 0123456789"
                 onChange={handleInputChange}
                 required
                 autoComplete="tel"
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -306,10 +310,11 @@ function ImageUploadForm() {
                 name="email"
                 id="email"
                 value={formData.email}
+                placeholder="johnsmith@gmail.com"
                 onChange={handleInputChange}
                 required
                 autoComplete="email"
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -333,8 +338,9 @@ function ImageUploadForm() {
                 id="facebook"
                 name="facebook"
                 value={facebook}
+                placeholder="facebook.com/johnsmith"
                 onChange={(event) => setFacebook(event.target.value)}
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
               />
             </div>
           </div>
@@ -353,9 +359,10 @@ function ImageUploadForm() {
                 type="text"
                 id="instagram"
                 name="instagram"
+                placeholder="instagram.com/johnsmith"
                 value={instagram}
                 onChange={(event) => setInstagram(event.target.value)}
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -374,9 +381,10 @@ function ImageUploadForm() {
                 type="text"
                 id="linkedin"
                 name="linkedin"
+                placeholder="linkedin.com/in/johnsmith"
                 value={linkedin}
                 onChange={(event) => setLinkedin(event.target.value)}
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
               />
             </div>
           </div>
@@ -396,8 +404,9 @@ function ImageUploadForm() {
                 id="twitter"
                 name="twitter"
                 value={twitter}
+                placeholder="twitter.com/johnsmith"
                 onChange={(event) => setTwitter(event.target.value)}
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -417,8 +426,9 @@ function ImageUploadForm() {
                 id="youtube"
                 name="youtube"
                 value={youtube}
+                placeholder="youtube.com/johnsmith"
                 onChange={(event) => setYoutube(event.target.value)}
-                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -521,7 +531,30 @@ function ImageUploadForm() {
                       name={`link-${link.id}`}
                       id={`link-${link.id}`}
                       autoComplete="off"
-                      className="block w-full rounded-md border-0 px-3.5 py-2 pl-36 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
+                      placeholder={
+                        link.title === "Other"
+                          ? "Custom Link"
+                          : link.title === "Behance"
+                          ? "behance.net/johnsmith"
+                          : link.title === "Dribbble"
+                          ? "dribbble.com/johnsmith"
+                          : link.title === "Github"
+                          ? "github.com/johnsmith"
+                          : link.title === "Gitlab"
+                          ? "gitlab.com/johnsmith"
+                          : link.title === "Pinterest"
+                          ? "pinterest.com/johnsmith"
+                          : link.title === "Drive"
+                          ? "drive.google.com/johnsmith"
+                          : link.title === "Tiktok"
+                          ? "tiktok.com/johnsmith"
+                          : link.title === "Vimeo"
+                          ? "vimeo.com/johnsmith"
+                          : link.title === "Portfolio"
+                          ? "johnsmith.com"
+                          : ""
+                      }
+                      className="block w-full rounded-md border-0 px-3.5 py-2 pl-36 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
                       value={link.url}
                       onChange={(e) => handleUrlChange(link.id, e)}
                     />

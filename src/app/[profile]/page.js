@@ -14,7 +14,10 @@ const ProfileComponent = ({ data, isMobile }) => {
       style={!isMobile ? { width: 450 } : null}
     >
       <div className={style.background}></div>
-      <Image src="/logo.svg" width={130} height={100} />
+      <div className={style.logoContainer}>
+        <Image src="/logo.svg" width={130} height={100} />
+      </div>
+
       <Image
         src={data?.avatar}
         className={style.avatar}
@@ -32,8 +35,8 @@ const ProfileComponent = ({ data, isMobile }) => {
         </div>
         <div className={style.button2}>
           <p className={style.buttonText}>
-            <Link href={`mailto:${data?.email}`}>
-              <p className={style.buttonText}>Email Me</p>
+            <Link className={style.buttonText} href={`mailto:${data?.email}`}>
+              <p>Email Me</p>
             </Link>
           </p>
         </div>
@@ -55,17 +58,17 @@ const ProfileComponent = ({ data, isMobile }) => {
   );
 };
 
-const Home = () => {
+const Profile = ({ params }) => {
   const { isMobile, isTablet, isDesktop } = useContext(DeviceContext);
   const [data, setData] = useState(null);
-  const [subdomain, setSubdomain] = useState("");
-
+  //   const [subdomain, setSubdomain] = useState("");
+  console.log(params);
   useEffect(() => {
-    const subdomain = window.location.hostname.split(".")[0];
-    setSubdomain(subdomain);
+    // const subdomain = window.location.hostname.split(".")[0];
+    // setSubdomain(subdomain);
 
     async function getData() {
-      const res = await fetch(`api/user/${subdomain}`, {
+      const res = await fetch(`api/user/${params.profile}`, {
         cache: "no-cache",
       });
 
@@ -77,9 +80,7 @@ const Home = () => {
     }
 
     getData();
-  }, [subdomain]);
-
-  console.log("subdomain: ", subdomain);
+  }, []);
 
   if (!data) {
     return (
@@ -113,4 +114,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Profile;
