@@ -26,12 +26,16 @@ const ProfileComponent = ({ data, isMobile }) => {
 
       <div className={style.buttonContainer}>
         <div className={style.button1}>
-          <Link href="tel:+8801990004984">
+          <Link href={`tel:${data?.phone}`}>
             <p className={style.buttonText}>Call Now</p>
           </Link>
         </div>
         <div className={style.button2}>
-          <p className={style.buttonText}>Hire me</p>
+          <p className={style.buttonText}>
+            <Link href={`mailto:${data?.email}`}>
+              <p className={style.buttonText}>Email Me</p>
+            </Link>
+          </p>
         </div>
       </div>
       <div className={style.socialLinks}>

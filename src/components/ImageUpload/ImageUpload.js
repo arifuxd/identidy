@@ -15,8 +15,6 @@ function ImageUploadForm() {
 
   //dynamics link code
   const [links, setLinks] = useState([{ id: 1, url: "", title: "Portfolio" }]);
-
-  console.log(links);
   const addLink = () => {
     const newId = links.length + 1;
     const newLink = { id: newId, url: "", title: "Portfolio" };
@@ -60,6 +58,11 @@ function ImageUploadForm() {
     links: [],
     sociallinks: [],
   });
+  const [facebook, setFacebook] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [youtube, setYoutube] = useState("");
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -105,27 +108,27 @@ function ImageUploadForm() {
             {
               icon: "facebook",
               title: "Facebook",
-              url: formData.facebook,
+              url: facebook,
             },
             {
               icon: "instagram",
               title: "Instagram",
-              url: formData.instagram,
+              url: instagram,
             },
             {
               icon: "linkedin",
               title: "Linkedin",
-              url: formData.linkedin,
+              url: linkedin,
             },
             {
               icon: "twitter",
               title: "Twitter",
-              url: formData.twitter,
+              url: twitter,
             },
             {
               icon: "youtube",
               title: "Youtube",
-              url: formData.youtube,
+              url: youtube,
             },
           ],
           links: links,
@@ -155,6 +158,9 @@ function ImageUploadForm() {
               sociallinks: [],
             });
             setSelectedImage(null);
+            //redireact to subdomain profile
+
+            window.location.href = `https://${formData.username}.${window.location.hostname}`;
           } else {
             // Handle the error response
             console.error("Error uploading data:", response.statusText);
@@ -169,6 +175,12 @@ function ImageUploadForm() {
   return (
     <div className="isolate bg-dark px-6 py-10  ">
       <div className="mx-auto max-w-2xl text-center">
+        <Image
+          className="mx-auto mb-10"
+          src="/logo.svg"
+          width={130}
+          height={100}
+        />
         <h2 className="text-3xl font-bold  text-slate-50 sm:text-4xl">
           Create your account
         </h2>
@@ -320,8 +332,8 @@ function ImageUploadForm() {
                 type="text"
                 id="facebook"
                 name="facebook"
-                value={formData.facebook}
-                onChange={handleInputChange}
+                value={facebook}
+                onChange={(event) => setFacebook(event.target.value)}
                 className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
               />
             </div>
@@ -341,8 +353,8 @@ function ImageUploadForm() {
                 type="text"
                 id="instagram"
                 name="instagram"
-                value={formData.instagram}
-                onChange={handleInputChange}
+                value={instagram}
+                onChange={(event) => setInstagram(event.target.value)}
                 className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -362,8 +374,8 @@ function ImageUploadForm() {
                 type="text"
                 id="linkedin"
                 name="linkedin"
-                value={formData.linkedin}
-                onChange={handleInputChange}
+                value={linkedin}
+                onChange={(event) => setLinkedin(event.target.value)}
                 className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
               />
             </div>
@@ -383,8 +395,8 @@ function ImageUploadForm() {
                 type="text"
                 id="twitter"
                 name="twitter"
-                value={formData.twitter}
-                onChange={handleInputChange}
+                value={twitter}
+                onChange={(event) => setTwitter(event.target.value)}
                 className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -404,8 +416,8 @@ function ImageUploadForm() {
                 type="text"
                 id="youtube"
                 name="youtube"
-                value={formData.youtube}
-                onChange={handleInputChange}
+                value={youtube}
+                onChange={(event) => setYoutube(event.target.value)}
                 className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-600 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6"
               />
             </div>

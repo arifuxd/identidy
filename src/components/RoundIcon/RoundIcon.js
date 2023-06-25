@@ -6,8 +6,10 @@ const RoundIcon = ({ icon, url }) => {
   return (
     <Link
       className={style.container}
-      href={url !== undefined ? url : "#"}
-      target={url == "#" ? "_self" : "_blank"}
+      href={
+        url !== undefined ? (url.startsWith("http") ? url : `//${url}`) : "#"
+      }
+      target="_blank"
     >
       <Image
         className={style.icon}
