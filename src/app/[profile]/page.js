@@ -94,15 +94,15 @@ const Profile = ({ params }) => {
   return (
     <div>
       {isMobile && data ? (
-        <ProfileComponent isMobile={isMobile} data={data} />
+        <ProfileComponent isMobile={isMobile} data={data.user} />
       ) : isDesktop && data ? (
         <div className={`${style.Desktopcontainer}`}>
-          <ProfileComponent isMobile={isMobile} data={data} />
+          <ProfileComponent isMobile={isMobile} data={data.user} />
         </div>
       ) : isTablet && data ? (
         // Add your logic for tablet here
         <div className={`${style.Tabletcontainer}`}>
-          <ProfileComponent isMobile={isMobile} data={data} />
+          <ProfileComponent isMobile={isMobile} data={data.user} />
         </div>
       ) : (
         <div>

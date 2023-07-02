@@ -8,7 +8,26 @@ export const GET = async (request) => {
   try {
     await dbConnect();
     const user = await User.findOne({ username });
-    return NextResponse.json(user, { status: 200 });
+
+    if (user) {
+      return NextResponse.json(
+        {
+          message: "Username already exists. Please choose a different username.",
+          exists: true,
+          user: user,
+        },
+        { status: 200 }
+      );
+    } else {
+      return NextResponse.json(
+        {
+          message: "Username is available.",
+          exists: false,
+          user: null,
+        },
+        { status: 200 }
+      );
+    }
   } catch (error) {
     return new NextResponse(error, { status: 500 });
   }

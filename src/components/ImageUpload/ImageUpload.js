@@ -12,6 +12,8 @@ function ImageUploadForm() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [progresspercent, setProgresspercent] = useState(0);
   const [imgUrl, setImgUrl] = useState(null);
+  const [usernameExists, setUsernameExists] = useState(false);
+  const [usernameTouched, setUsernameTouched] = useState(false);
 
   //dynamics link code
   const [links, setLinks] = useState([{ id: 1, url: "", title: "Portfolio" }]);
@@ -73,6 +75,29 @@ function ImageUploadForm() {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
+  
+  const checkUsernameAvailability = async () => {
+    const username = formData.username.trim();
+    if (username.length >= 3) {
+      try {
+        const response = await fetch(`/api/user/${username}`);
+        const data = await response.json();
+        setUsernameExists(data.exists);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setUsernameExists(false);
+    }
+  };
+  
+  const handleUsernameBlur = () => {
+    setUsernameTouched(true);
+    if (formData.username.length >= 3) {
+      checkUsernameAvailability();
+    }
+  };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -206,10 +231,19 @@ function ImageUploadForm() {
                 placeholder="e.g. johnsmith"
                 value={formData.username}
                 required
+                minLength={3} 
                 onChange={handleInputChange}
+                onBlur={handleUsernameBlur}
                 autoComplete="username"
                 className="block w-full rounded-md border-0 px-3.5 py-2 bg-zinc-950 text-slate-50 shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-700 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 autofill:bg-zinc-950"
               />
+              {usernameTouched && formData.username.length >= 3 && (
+  usernameExists ? (
+    <p className="text-sm mt-1 text-red-500">Username already exists.</p>
+  ) : (
+    <p className="text-sm mt-1 text-green-600">Username is available.</p>
+  )
+)}
             </div>
           </div>
           <div>
@@ -591,6 +625,7 @@ function ImageUploadForm() {
         <div className="mt-10">
           <button
             type="submit"
+            
             className="block w-full rounded-md bg-rose-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-rose-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
           >
             Submit
